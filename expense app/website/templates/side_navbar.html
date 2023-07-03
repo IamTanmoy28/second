@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='sidenavbar_style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script src="https://kit.fontawesome.com/93782ebd13.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="sidenav">
+    <div class="logo-container">
+      <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Logo" class="logo-image">
+    </div>
+    <a href="{{url_for('views.dashboard')}}"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="{{url_for('views.analytics')}}"><i class="fas fa-chart-bar"></i> Analytics</a>
+    <a href="{{url_for('views.transaction')}}"><i class="fas fa-exchange-alt"></i> Transactions</a>
+    <a href="{{url_for('views.add_expense')}}"><i class="fas fa-edit"></i> Add Expense</a>
+    <a href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+  </div>
+
+  <div class="top-right">
+    <div class="user-profile">
+      <i class="fas fa-user user-icon"></i>
+      <span class="user-name">{{ current_user.username }}</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #28dfff95;
+}
+
+.container {
+  max-width: 800px;
+  margin-left: 240px;
+  padding: 0px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #075c90;
+  border-bottom: 5px solid #044065;
+}
+
+.navbar-title {
+  color: #fff;
+  margin-left:240px;
+  margin-top:20px;
+}
+
+.flash-message {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.flash-success {
+  background-color: #8bc34a;
+  color: #fff;
+}
+
+.flash-error {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color:#00385b;
+}
+
+h2{
+  font-size:30px;
+  margin-bottom:20px;
+  color:#00385b;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 3px solid #044065;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background:linear-gradient(to left,rgb(255, 255, 255),rgb(172, 239, 246));
+}
+
+th {
+  background-color: #086dac;
+  color: rgb(255, 255, 255);
+}
+
+.balance {
+  margin-bottom: 20px;
+}
+
+.balance h3 {
+  font-size: 30px;
+  padding: 5px 0px;
+  color:#00385b;
+}
+
+.delete-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: rgb(255, 154, 154);
+}
+
+.delete-button:hover {
+  color: rgb(255, 76, 76);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  padding:7px;
+  
+}
+
+.input-group input {
+  max-width: 20%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+
+
+.input-group-text {
+  font-size: 30px;
+  margin-right: 10px;
+  color:#00385b;
+  font-style: bold;
+}
+
+.input-icon {
+  margin-left: 10px;
+  transform: scale(1.5);
+}
+
+.input-icon i {
+  color: #555;
+}
+
+.input-group textarea {
+  max-width: 20%;
+  height:40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color:#00385b;
+  font-style: bold;
+}
+
+.type-selection label {
+  align-items: center;
+  margin-right: 10px;
+  padding:0px;
+  color:#00385b;
+  font-style: bold;
+}
+
+.type-selection input[type="radio"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+  margin-left:10px;
+}
+
+.type-text {
+  font-size: 27px; 
+  margin-bottom: 10px; 
+  color:#00385b;
+  font-style: bold;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #075c90;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #044065;
+}
+
+
+#description {
+  vertical-align: top;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.selection-text{
+  font-size: 25px;
+}
+
+.flash-messages {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flash-message {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  width: 250px;
+  text-align: center;
+}
+
+.flash-success {
+  background-color: #28a745;
+}
+
+.flash-error {
+  background-color: #dc3545;
+}
+
+
+#lineChart {
+  position: absolute;
+  align-content: center;
+  margin-top: 5%;
+  padding: 0;
+  left: 270px;
+  top:155px;
+  padding: 12px;
+  border:2px solid #044065ca;
+  border-radius:8px;
+  background-color: #fff;
+}
+
+
+#credit-graph {
+  position: absolute;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+  left: 1000px;
+  top:155px;
+  padding: 12px;
+  border:2px solid #044065ca;
+  border-radius:8px;
+  background-color: #fff;
+  margin-left: 30px;
+
+}
+
+#debit-graph {
+  position: absolute;
+  left: 1000px;
+  top:480px;
+  padding: 12px;
+  border:2px solid #044065ca;
+  border-radius:8px;
+  background-color: #fff;
+  margin-left: 30px;
+
+}
+
+.canvas-container h1 {
+  font-size: 30px;
+  position: absolute;
+  top:185px;
+  left: 280px;
+  color:#00385b;
+  font-style: bold;
+  text-decoration: underline;
+}
+
+.canvas-container h2 {
+  font-size: 25px;
+  position: absolute;
+  top: 120px;
+  left: 1040px;
+  color:#00385b;
+  font-style:bold;
+  text-decoration: underline;
+}
+
+.canvas-container h3 {
+  font-size: 25px;
+  position: absolute;
+  top:445px;
+  left: 1040px;
+  color:#00385b;
+  font-style:bold;
+  text-decoration: underline;
+}
+
+.expense-filter {
+  margin-bottom: 20px;
+}
+
+
+
+
+.test{
+  background-color: #57ff7b;
+}

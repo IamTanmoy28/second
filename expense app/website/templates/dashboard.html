@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
+</head>
+<body>
+  <div class="navbar">
+    <h1 class="navbar-title">Dashboard</h1>
+    {% include 'side_navbar.html' %}
+  </div> 
+  <div class="canvas-container">
+    <h1>CURRENT BALANCE GRAPH</h1>
+    <canvas id="lineChart" width="700" height="450"></canvas>
+  </div>
+
+  <div class="canvas-container">
+    <h2>CREDIT GRAPH</h2>
+    <canvas id="credit-graph" width="400" height="250"></canvas>
+  </div>
+
+  <div class="canvas-container">
+    <h3>DEBIT GRAPH</h3>
+    <canvas id="debit-graph" width="400" height="250"></canvas>
+  </div>
+
+  <script>
+    var current_balance_dates = {{ current_balance_dates | safe }};
+    var balances = {{ balances | safe }};
+    
+    var credit_dates = {{ credit_dates | safe }};
+    var credits_list = {{ credits_list | safe }};
+    
+    var debit_dates = {{ debit_dates | safe }};
+    var debit_list = {{ debit_list | safe }};
+    
+    var lineChartCtx = document.getElementById("lineChart").getContext("2d");
+    var lineChart = new Chart(lineChartCtx, {
+      type: "line",
+      data: {
+        labels: current_balance_dates,
+        datasets: [
+          {
+            label: "CURRENT BALANCE",
+            data: balances,
+            fill: false,
+            backgroundColor: "rgba(75, 192, 192, 0.5)",
+            borderColor: "rgb(75, 192, 192)",
+            lineTension: 0.1
+          }
+        ]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          y: {
+            ticks: {
+              color: "rgba(0, 0, 0, 1)" 
+            }
+          },
+          x: {
+            ticks: {
+              color: "rgba(0, 0, 0, 1)" 
+            }
+          }
+        }
+      }
+    });
+
+    var creditGraphCtx = document.getElementById("credit-graph").getContext("2d");
+    var barChart = new Chart(creditGraphCtx, {
+      type: "bar",
+      data: {
+        labels: credit_dates,
+        datasets: [
+          {
+            label: "CREDIT",
+            data: credits_list,
+            backgroundColor: "rgba(40, 167, 69, 0.5)",
+            borderColor: "rgba(35, 167, 69)",
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          y: {
+            ticks: {
+              color: "rgba(0, 0, 0, 1)" 
+            }
+          },
+          x: {
+            ticks: {
+              color: "rgba(0, 0, 0, 1)" 
+            }
+          }
+        }
+      }
+    });
+
+    var debitGraphCtx = document.getElementById("debit-graph").getContext("2d");
+    var debitChart = new Chart(debitGraphCtx, {
+      type: "bar",
+      data: {
+        labels: debit_dates,
+        datasets: [
+          {
+            label: "DEBIT",
+            data: debit_list,
+            backgroundColor: "rgba(255, 87, 87, 0.5)",
+            borderColor: "rgba(230, 87, 87)",
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          y: {
+            ticks: {
+              color: "rgba(0, 0, 0, 1)"
+            }
+          },
+          x: {
+            ticks: {
+              color: "rgba(0, 0, 0, 1)" 
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

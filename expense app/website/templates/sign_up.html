@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signup_style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/93782ebd13.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='transition.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="flash-container" style="--flash-count: {{ flash_count }}">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>                       
+        </nav>
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form action="{{ url_for('auth.signup') }}" method="post">
+                <div class="input-group">
+                    <div class="form-group">
+                        <i class="fa-solid fa-user"></i>
+                        <label for="username"></label>
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <label for="email"></label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa-solid fa-key"></i>
+                        <label for="password"></label>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa-solid fa-key"></i>
+                        <label for="confirm_password"></label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                        <label for="bank_balance"></label>
+                        <input type="number" id="bank_balance" name="bank_balance" placeholder="Bank Balance" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                        <label for="confirm_bank_balance"></label>
+                        <input type="number" id="confirm_bank_balance" name="confirm_bank_balance" placeholder="Confirm Bank Balance" step="0.01" required>
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="submit" id="signInBtn">Submit</button>
+                </div>
+            </form>
+            <div class="donthave">
+                <p>Already have an account? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const flashMessages = document.querySelectorAll('.flash-message');
+    
+        if (flashMessages) {
+            flashMessages.forEach((message, index) => {
+                setTimeout(() => {
+                    message.style.transition = 'opacity 0.5s ease';
+                    message.style.opacity = '0';
+                    message.addEventListener('transitionend', () => {
+                        message.remove();
+                    });
+                }, (index + 1) * 2000);
+            });
+        }
+    </script>    
+</body>
+</html>
+

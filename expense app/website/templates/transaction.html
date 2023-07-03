@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transaction</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script>
+    setTimeout(function() {
+      var flashMessage = document.querySelector('.flash-message');
+      if (flashMessage) {
+        flashMessage.style.display = 'none';
+      }
+    }, 2000);
+  </script>
+</head>
+<body>
+  <div class="navbar">
+    <h1 class="navbar-title">Transaction</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for category, message in messages %}
+            {% if category == 'error' %}
+              <li class="flash-message flash-error">{{ message }}</li>
+            {% elif category == 'success' %}
+              <li class="flash-message flash-success">{{ message }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% include 'side_navbar.html' %}
+  </div>  
+  <div class="container">
+    <div class="balance">
+      <h3>Current Balance: {{ total_balance }}</h3>
+    </div>
+    <h2>Expense History:</h2>
+    <div class="expense-filter">
+      <button class="btn" onclick="filterExpenses('debit')">Show Debit</button>
+      <button class="btn" onclick="filterExpenses('credit')">Show Credit</button>
+      <button class="btn" onclick="filterExpenses('all')">Show All</button>
+    </div>
+    <table>
+      <tr>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Action</th>
+      </tr>
+      {% for expense in expenses %}
+      <tr class="expense-row {% if expense.amount_type == 'debit' %}debit{% elif expense.amount_type == 'credit' %}credit{% endif %}">
+        <td>
+          {% if expense.amount_type == "debit" %}
+            <span class="debit">-{{ expense.amount }}</span>
+          {% else %}
+            <span class="credit">{{ expense.amount }}</span>
+          {% endif %}
+        </td>
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.date }}</td>
+        <td>
+          {% if expense.amount_type == "credit" %}
+            <span class="credit">Credit</span>
+          {% else %}
+            <span class="debit">Debit</span>
+          {% endif %}
+        </td>
+        <td>
+          <form action="{{ url_for('views.delete_expense', expense_id=expense.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this expense?');">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn delete-button">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <script>
+    function filterExpenses(type) {
+      var expenseRows = document.querySelectorAll('.expense-row');
+      if (type === 'debit') {
+        expenseRows.forEach(function(row) {
+          row.style.display = row.classList.contains('debit') ? 'table-row' : 'none';
+        });
+      } else if (type === 'credit') {
+        expenseRows.forEach(function(row) {
+          row.style.display = row.classList.contains('credit') ? 'table-row' : 'none';
+        });
+      } else if (type === 'all') {
+        expenseRows.forEach(function(row) {
+          row.style.display = 'table-row';
+        });
+      }
+    }
+  </script>
+</body>
+</html>
+

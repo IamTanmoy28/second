@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+body{
+  background: #073d5f;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  animation: transitionIn 1.25s;
+}
+
+.form-box {
+  height: 90%;
+  width: 50%;
+  max-width: 450px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 50px 60px 70px;
+  text-align: center;
+  
+}
+
+.form-box h1 {
+  font-size: 30px;
+  margin-bottom: 60px;
+  color: #086dac;
+  position: relative;
+}
+
+.form-box h1::after {
+  content: '';
+  width: 30px;
+  height: 4px;
+  border-radius: 3px;
+  background: #086dac;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.form-group {
+  background: #eaeaea;
+  margin: 15px 0;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  max-height: 65px;
+  transition: max-height 0.5s;
+  overflow: hidden;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 18px 15px;
+}
+
+.form-group i {
+  margin-left: 15px;
+  color: #999;
+}
+
+form p {
+  text-align: left;
+  font-size: 13px;
+}
+
+.btn-field {
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.btn-field button {
+  flex-basis: 48%;
+  background: #086dac;
+  color: #fff;
+  height: 40px;
+  border-radius: 10px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-field button:hover {
+  background: #075c90;
+}
+
+.btn-field button:active {
+  background: #06456e;
+}
+
+.input-group {
+  height: 420px;
+}
+
+.btn-field button.disable {
+  background: #086dac;
+}
+
+.donthave {
+  padding: 3%;
+  font-size: 15px;
+}
+
+.donthave p a {
+  text-decoration: none;
+}
+
+.flash-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 450px;
+  z-index: 9999;
+}
+
+.flash-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+}
+
+.flash-message.fadeout {
+  animation: fadeout 2s forwards;
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.flash-message:nth-last-child(n+1) {
+  animation-delay: calc(2s * (var(--flash-count) - 1));
+}
+
+
+
+@keyframes transitionIn {
+  from{
+      transform: translateY(-10px);
+  }
+
+  to{
+      transform: translateY(0);
+  }
+}

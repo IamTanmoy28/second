@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/93782ebd13.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="flash-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="form-box">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='logo/logo_login.jpg') }}" alt="Logo" class="logo-image">
+            </div>
+            <h1 id="title">Sign In</h1>
+            <form action="{{ url_for('auth.login') }}" method="post">
+                <div class="input-group">
+                    <div class="form-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <label for="email"></label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa-solid fa-key"></i>
+                        <label for="password"></label>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="submit" id="signInBtn">Submit</button>
+                </div>
+                <div class="donthave">
+                    <p>Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign Up</a></p>
+                </div>
+            </form>
+        </div>               
+    <script>
+        const flashMessages = document.querySelectorAll('.flash-message');
+        if (flashMessages) {
+            flashMessages.forEach((message) => {
+                setTimeout(() => {
+                    message.classList.add('fade-out');
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500); 
+                }, 2000); 
+            });
+        }
+    </script>
+</body>
+</html>
